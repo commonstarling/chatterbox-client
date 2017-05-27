@@ -55,6 +55,27 @@ app.prepend = function(text, username) {
   $('#chats').prepend(`<div class="messageWindow">${username}: ${text}</div>`);
 };
 
+app.clearMessages = function() {
+
+};
+
+app.renderMessage = function() {
+
+};
+
+app.renderRoom = function() {
+
+};
+
+app.handleUsernameClick = function() {
+
+};
+
+app.handleSubmit = function() {
+
+};
+
+
 $(document).ready(function() {
 
 
