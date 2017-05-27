@@ -53,8 +53,10 @@ app.clearMessages = function() {
   $('#chats').empty();
 };
 
-app.renderRoom = function() {
-
+app.renderRoom = function(roomName) {
+  var form = document.querySelector("form");
+  $('form #roomSelect').append(`<option value="${roomName}">${roomName}</option>`);
+  form.reset();
 };
 
 app.handleUsernameClick = function() {
@@ -79,14 +81,19 @@ app.handleSubmit = function() {
   var form = document.querySelector("form");
 
   form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    message.roomname = form.roomname.value;
-    message.text = form.text.value;
-    message.username = getQueryVariable('username');
-    console.log(message);
-    app.send(message);
-    form.reset();
-
+    //if newroom is selected
+    if (form.roomname.value === 'newroom') {
+      event.preventDefault();
+      app.renderRoom(form.text.value);
+    } else {
+      event.preventDefault();
+      message.roomname = form.roomname.value;
+      message.text = form.text.value;
+      message.username = getQueryVariable('username');
+      console.log(message);
+      app.send(message);
+      form.reset();
+    }
   });
 
 };
